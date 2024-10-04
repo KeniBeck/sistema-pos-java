@@ -31,7 +31,7 @@ public class VentanaInventario extends JFrame {
 
     private void inicializarComponentes() {
         setTitle("Gestión de Inventario");
-        setSize(600, 400);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
 
@@ -81,17 +81,14 @@ public class VentanaInventario extends JFrame {
         }
     }
 
-    private void cargarInventarios() {
-        try {
-            List<Inventario> inventarios = inventarioController.obtenerTodosLosInventarios();
-            comboInventarios.removeAllItems();
-            for (Inventario inventario : inventarios) {
-                comboInventarios.addItem(inventario);
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Error al cargar inventarios: " + e.getMessage());
-        }
-    }
+private void cargarInventarios() {
+    comboInventarios.removeAllItems();
+    // Agrega las ubicaciones manualmente
+    comboInventarios.addItem(new Inventario(1, "Almacén Principal"));
+    comboInventarios.addItem(new Inventario(2, "Almacén Secundario"));
+    comboInventarios.addItem(new Inventario(3, "Tienda 1"));
+    comboInventarios.addItem(new Inventario(4, "Tienda 2"));
+}
 
     private void cargarInventario() {
         try {

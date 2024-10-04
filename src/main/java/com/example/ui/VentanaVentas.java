@@ -21,7 +21,7 @@ public class VentanaVentas extends JFrame {
     private void inicializarComponentes() {
         setTitle("Sistema de Ventas");
         setSize(300, 200);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new FlowLayout());
 
         campoTotal = new JTextField(10);

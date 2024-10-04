@@ -12,17 +12,32 @@ public class VentanaPrincipal extends JFrame {
 
     private void inicializarComponentes() {
         setTitle("Sistema de Ventas");
-        setSize(300, 200);
+        setExtendedState(JFrame.MAXIMIZED_BOTH); // Maximiza la ventana
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new GridLayout(3, 1));
+        setLayout(new BorderLayout());
+
+        // Panel para el título
+        JPanel panelTitulo = new JPanel();
+        panelTitulo.setLayout(new FlowLayout());
+        JLabel titulo = new JLabel("Sistema de Ventas");
+        titulo.setFont(new Font("Arial", Font.BOLD, 24));
+        panelTitulo.add(titulo);
+
+        // Panel para los botones
+        JPanel panelBotones = new JPanel();
+        panelBotones.setLayout(new GridLayout(3, 1, 10, 10));
+        panelBotones.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Márgenes
 
         botonVentas = new JButton("Ventas");
         botonProductos = new JButton("Gestión de Productos");
         botonInventario = new JButton("Inventario");
 
-        add(botonVentas);
-        add(botonProductos);
-        add(botonInventario);
+        panelBotones.add(botonVentas);
+        panelBotones.add(botonProductos);
+        panelBotones.add(botonInventario);
+
+        add(panelTitulo, BorderLayout.NORTH);
+        add(panelBotones, BorderLayout.CENTER);
 
         botonVentas.addActionListener(e -> new VentanaVentas().setVisible(true));
         botonProductos.addActionListener(e -> new VentanaProductos().setVisible(true));

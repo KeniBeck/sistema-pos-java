@@ -1,0 +1,17 @@
+/home/andresdev/Repository/Trabajo/sistema-pos-java/src/main/java/com/example/model/Inventario.java
+/home/andresdev/Repository/Trabajo/sistema-pos-java/src/main/java/com/example/model/Venta.java
+/home/andresdev/Repository/Trabajo/sistema-pos-java/src/main/java/com/example/dao/VentaDAO.java
+/home/andresdev/Repository/Trabajo/sistema-pos-java/src/main/java/com/example/util/DatabaseConnection.java
+/home/andresdev/Repository/Trabajo/sistema-pos-java/src/main/java/com/example/controller/InventarioController.java
+/home/andresdev/Repository/Trabajo/sistema-pos-java/src/main/java/com/example/dao/InventarioDAO.java
+/home/andresdev/Repository/Trabajo/sistema-pos-java/src/main/java/com/example/ui/VentanaInventario.java
+/home/andresdev/Repository/Trabajo/sistema-pos-java/src/main/java/com/example/ui/VentanaPrincipal.java
+/home/andresdev/Repository/Trabajo/sistema-pos-java/src/main/java/com/example/model/Producto.java
+/home/andresdev/Repository/Trabajo/sistema-pos-java/src/main/java/com/example/MainClass.java
+/home/andresdev/Repository/Trabajo/sistema-pos-java/src/main/java/com/example/dao/ProductoDAO.java
+/home/andresdev/Repository/Trabajo/sistema-pos-java/src/main/java/com/example/dao/ProductoInventarioDAO.java
+/home/andresdev/Repository/Trabajo/sistema-pos-java/src/main/java/com/example/controller/VentaController.java
+/home/andresdev/Repository/Trabajo/sistema-pos-java/src/main/java/com/example/ui/VentanaVentas.java
+/home/andresdev/Repository/Trabajo/sistema-pos-java/src/main/java/com/example/controller/ProductoController.java
+/home/andresdev/Repository/Trabajo/sistema-pos-java/src/main/java/com/example/model/ProductoInventario.java
+/home/andresdev/Repository/Trabajo/sistema-pos-java/src/main/java/com/example/ui/VentanaProductos.java
