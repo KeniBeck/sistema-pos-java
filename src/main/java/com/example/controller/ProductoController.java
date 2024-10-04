@@ -13,6 +13,10 @@ public class ProductoController {
         this.productoDAO = new ProductoDAO();
     }
 
+    public boolean existeProducto(int productoId) throws SQLException {
+        return productoDAO.existeProducto(productoId);
+    }
+
     public void agregarProducto(Producto producto) throws SQLException {
         productoDAO.agregarProducto(producto);
     }

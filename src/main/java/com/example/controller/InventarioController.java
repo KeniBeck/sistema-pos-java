@@ -48,4 +48,7 @@ public class InventarioController {
     public void eliminarProductoDeInventario(int id) throws SQLException {
         productoInventarioDAO.eliminarProductoInventario(id);
     }
+        public boolean existeInventario(int inventarioId) throws SQLException {
+        return inventarioDAO.existeInventario(inventarioId);
+    }
 }

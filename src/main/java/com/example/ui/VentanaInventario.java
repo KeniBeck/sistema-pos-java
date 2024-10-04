@@ -118,27 +118,38 @@ private void cargarInventarios() {
     }
 
     private void agregarProductoAInventario() {
-        try {
-            Producto productoSeleccionado = (Producto) comboProductos.getSelectedItem();
-            Inventario inventarioSeleccionado = (Inventario) comboInventarios.getSelectedItem();
-            int cantidad = Integer.parseInt(campoCantidad.getText());
+    try {
+        Producto productoSeleccionado = (Producto) comboProductos.getSelectedItem();
+        Inventario inventarioSeleccionado = (Inventario) comboInventarios.getSelectedItem();
+        int cantidad = Integer.parseInt(campoCantidad.getText());
 
-            if (productoSeleccionado != null && inventarioSeleccionado != null && cantidad > 0) {
-                ProductoInventario nuevoPI = new ProductoInventario(0, productoSeleccionado.getId(), inventarioSeleccionado.getId(), cantidad);
-                inventarioController.agregarProductoAInventario(nuevoPI);
-                JOptionPane.showMessageDialog(this, "Producto agregado al inventario con éxito");
-                cargarInventario();
-                campoCantidad.setText("");
-            } else {
-                JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos correctamente");
+        if (productoSeleccionado != null && inventarioSeleccionado != null && cantidad > 0) {
+            // Verifica si el inventario existe, si no, agrégalo
+            if (!inventarioController.existeInventario(inventarioSeleccionado.getId())) {
+                inventarioController.agregarInventario(inventarioSeleccionado);
             }
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Por favor, ingrese una cantidad válida");
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Error al agregar producto al inventario: " + e.getMessage());
-        }
-    }
 
+            // Verifica si el producto existe, si no, agrégalo
+            if (!productoController.existeProducto(productoSeleccionado.getId())) {
+                productoController.agregarProducto(productoSeleccionado);
+            }
+
+            // Ahora agrega la entrada en la tabla intermedia ProductoInventario
+            ProductoInventario nuevoPI = new ProductoInventario(0, productoSeleccionado.getId(), inventarioSeleccionado.getId(), cantidad);
+            inventarioController.agregarProductoAInventario(nuevoPI);
+
+            JOptionPane.showMessageDialog(this, "Producto agregado al inventario con éxito");
+            cargarInventario();
+            campoCantidad.setText("");
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos correctamente");
+        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Por favor, ingrese una cantidad válida");
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error al agregar producto al inventario: " + e.getMessage());
+    }
+}
     private void eliminarProductoDeInventario() {
         int filaSeleccionada = tablaInventario.getSelectedRow();
         if (filaSeleccionada >= 0) {

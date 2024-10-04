@@ -8,6 +8,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductoDAO {
+       public boolean existeProducto(int productoId) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM productos WHERE id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, productoId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;
+                }
+            }
+        }
+        return false;
+    }
     public void agregarProducto(Producto producto) throws SQLException {
         String sql = "INSERT INTO productos (nombre, precio, stock) VALUES (?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
