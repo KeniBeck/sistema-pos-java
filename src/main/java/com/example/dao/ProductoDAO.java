@@ -70,4 +70,62 @@ public class ProductoDAO {
             pstmt.executeUpdate();
         }
     }
+    public int obtenerStockProducto(int productoId) throws SQLException {
+        String query = "SELECT stock FROM productos WHERE id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setInt(1, productoId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getInt("stock");
+                } else {
+                    throw new SQLException("Producto no encontrado");
+                }
+            }
+        }
+    }
+
+    public void actualizarStockProducto(int productoId, int nuevoStock) throws SQLException {
+        String query = "UPDATE productos SET stock = ? WHERE id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setInt(1, nuevoStock);
+            statement.setInt(2, productoId);
+            statement.executeUpdate();
+        }
+    }
+    public Producto obtenerProductoPorId(int productoId) throws SQLException {
+        String query = "SELECT * FROM productos WHERE id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setInt(1, productoId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return new Producto(
+                        resultSet.getInt("id"),
+                        resultSet.getString("nombre"),
+                        resultSet.getDouble("precio"),
+                        resultSet.getInt("stock")
+                    );
+                } else {
+                    throw new SQLException("Producto no encontrado");
+                }
+            }
+        }
+    }
+  
+    public double obtenerPrecioProducto(int productoId) throws SQLException {
+        String query = "SELECT precio FROM productos WHERE id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setInt(1, productoId);
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getDouble("precio");
+                } else {
+                    throw new SQLException("Producto no encontrado");
+                }
+            }
+        }
+    }
 }

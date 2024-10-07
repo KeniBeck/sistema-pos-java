@@ -23,6 +23,25 @@ public class ProductoInventarioDAO {
             }
         }
     }
+         public ProductoInventario obtenerProductoInventarioPorProductoId(int productoId) throws SQLException {
+        String query = "SELECT * FROM productos_inventarios WHERE producto_id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setInt(1, productoId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return new ProductoInventario(
+                        resultSet.getInt("id"),
+                        resultSet.getInt("producto_id"),
+                        resultSet.getInt("inventario_id"),
+                        resultSet.getInt("cantidad")
+                    );
+                } else {
+                    throw new SQLException("Producto inventario no encontrado");
+                }
+            }
+        }
+    }
 
     public List<ProductoInventario> obtenerProductosInventarioPorProducto(int productoId) throws SQLException {
         List<ProductoInventario> productosInventario = new ArrayList<>();

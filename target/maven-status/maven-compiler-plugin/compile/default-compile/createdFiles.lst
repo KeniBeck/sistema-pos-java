@@ -1,4 +1,5 @@
 com/example/model/Producto.class
+com/example/ui/VentanaTodasVentas.class
 com/example/ui/VentanaPrincipal.class
 com/example/model/Venta.class
 com/example/ui/VentanaInventario.class

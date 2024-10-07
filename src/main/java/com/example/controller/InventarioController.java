@@ -2,6 +2,7 @@ package com.example.controller;
 
 import com.example.dao.InventarioDAO;
 import com.example.dao.ProductoInventarioDAO;
+import com.example.dao.ProductoDAO;
 import com.example.model.Inventario;
 import com.example.model.ProductoInventario;
 
@@ -11,12 +12,17 @@ import java.util.List;
 public class InventarioController {
     private InventarioDAO inventarioDAO;
     private ProductoInventarioDAO productoInventarioDAO;
+    private ProductoDAO productoDAO;
 
     public InventarioController() {
         this.inventarioDAO = new InventarioDAO();
         this.productoInventarioDAO = new ProductoInventarioDAO();
+        this.productoDAO = new ProductoDAO();
     }
 
+    public int obtenerStockProducto(int productoId) throws SQLException {
+        return productoDAO.obtenerStockProducto(productoId);
+    }
     public void agregarInventario(Inventario inventario) throws SQLException {
         inventarioDAO.agregarInventario(inventario);
     }
